@@ -8,34 +8,18 @@
 </head>
 
 <body>
-    <section id="login_page" style="display: none;">
-        <form action="">
-            <p><span>Username or Email</span></p>
-            <input id="data" type="text" placeholder="insert email or username" required>
-
-            <p><span>Password</span></p>
-            <input id="password" type="password" placeholder="insert password" required>
-
-            <button id="submit">Login</button>
-            <p id="errorLogin" class="hidden"></p>
-        </form>
-    </section>
-
-    <section id="home_page" style="display: none;">
-        <h1>Hamza nadi</h1>
-        <button id="logout">logout</button>
-    </section>
-
     <noscript>
         <div style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">
             🚫 JavaScript is disabled in your browser. Please enable it to use this site.
         </div>
     </noscript>
 
-    <script src="auth.js"></script>
-    <script src="utils.js"></script>
-    <script src="home.js"></script>
-    <script src="main.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/utils/utils.js"></script>
+    <script src="static/js/home/home.js"></script>
+    <script src="static/js/home/variables.js"></script>
+    <script src="static/js/utils/error.js"></script>
+    <script src="static/js/login/login.js"></script>
 </body>
 
 </html>
