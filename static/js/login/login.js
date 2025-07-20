@@ -1,4 +1,6 @@
-function renderLogin() {
+
+
+ function renderLogin() {
     document.body.innerHTML = ''
 
     // hna ncreeyew login section
@@ -71,19 +73,17 @@ function renderLogin() {
         const options = {
             method: "POST",
             headers: {
-                'authorization': 'basic ' + userData,
+                'authorization': `Basic ${userData}`,
             }
         }
 
         try {
-            let res = await fetch("https://learn.zone01oujda.ma/api/auth/signin", options)
+            let res = await fetch(auth, options)
             if (!res.ok) {
                 console.error("Failed to login !")
             }
 
             let token = await res.json()
-
-            console.log(token)
 
             if (token.error) {
                 showError(errorLogin, token.error)

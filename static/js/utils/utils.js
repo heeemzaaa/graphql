@@ -1,5 +1,10 @@
-function fetchData(query, arg = null, token) {
-    const res = fetch(url_data, {
+async function fetchData(query, token, arg = null) {
+    if (!token) {
+        console.error('❌ No token provided to fetchData!')
+        return
+    }
+
+    const res = await fetch(url_data, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -10,5 +15,6 @@ function fetchData(query, arg = null, token) {
             arg: arg,
         }),
     })
-    return res
+
+    return res.json()
 }

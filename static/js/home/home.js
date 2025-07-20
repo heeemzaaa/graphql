@@ -1,9 +1,7 @@
 
 
 function renderHome() {
-    document.body.innerHTML = ''
-
-    document.body.innerHTML = `
+  document.body.innerHTML = `
     <main id="home_page">
       <nav class="navBar">
         <button id="logout">logout</button>
@@ -24,7 +22,11 @@ function renderHome() {
     </main>
   `;
 
-  console.log('user', user);
+  const token = localStorage.getItem('jwt')
+  fetchData(USER, token).then(userdata => {
+    console.log("User data:", userdata)
+  })
+
 
   // Add logout click event
   const logoutButton = document.getElementById('logout');
