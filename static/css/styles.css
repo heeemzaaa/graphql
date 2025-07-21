@@ -1,5 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
+html,
+body {
+    background-color: rgb(20, 18, 18);
+    color: white;
+}
+
+#home_page {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 20px;
+}
+
+.navBar {
+    display: flex;
+    background-color: rgb(43, 3, 3);
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+#logout {
+    background-color: rgb(226, 14, 14);
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+}
 
 .hidden {
     display: none;
+}
+
+.user_infos {
+    display: flex;
+    flex-direction: column;
+    background-color: brown;
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: 10px;
+    gap: 10px;
+}
+
+.chart-border {
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: 10px;
+}
+
+
+/* test here */
+
+.audits-section {
+    margin: 8px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.audits-title {
+    text-align: center;
+    font-size: 26px;
+    color: #cc2222;
+    margin-bottom: 30px;
+}
+
+.audits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.audit-card {
+    width: 140px;
+    height: 140px;
+    background-color: #f7ca68;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.audit-number {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #b85c00;
+}
+
+.audit-label {
+    color: #8a6d3b;
+    font-size: 14px;
 }
