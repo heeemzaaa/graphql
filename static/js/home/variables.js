@@ -1,6 +1,7 @@
 const url_data = `https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql`
 const auth = `https://learn.zone01oujda.ma/api/auth/signin`
 
+
 const USER = `
 query {
     user {
@@ -49,37 +50,20 @@ query {
 } 
 `
 
-const USER_LEVEL = `
-query getLevelAndXP($arg: String!) {
-  user {
+const SKILLS = `
+query getSkillTransactions($login: String!) {
+  user(where: {login: {_eq: $login}}) {
     transactions(
       where: {
-        type: {_eq: "level"},
-        _or: [
-          {object: {type: {_eq: "project"}}},
-          {object: {type: {_eq: "piscine"}}}
-        ]
-      }
+        type: {_ilike: "%skill%"}
+      },
       order_by: {amount: desc}
-      limit: 1
     ) {
+      type
       amount
     }
   }
-  transaction(
-    where: {
-      type: {_eq: "xp"},
-      _or: [
-        {object: {type: {_eq: "project"}}},
-        {object: {type: {_eq: "piscine"}}},
-        {path: {_ilike: $arg}}
-      ]
-    }
-  ) {
-    amount
-  }
-}
-`
+}`
 
 
 
