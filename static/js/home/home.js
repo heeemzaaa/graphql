@@ -1,3 +1,11 @@
+import { fetchUserData, createUserInfoHTML } from "../data/userdata.js"
+import { fetchAuditData, calculateAuditStats, createChartsHTML } from "../data/auditData.js"
+import { fetchTransactionData, createInfoSectionHTML, createLinearSVG } from "../data/transactionData.js"
+import { fetchSkillsData, createSkillsBarChart } from "../data/skillsData.js"
+import { setupEventListeners } from "../utils/utils.js"
+
+
+
 function createNavigationHTML() {
   return `
     <nav class="navBar">
@@ -8,7 +16,7 @@ function createNavigationHTML() {
 }
 
 // Main render function
-async function renderHome() {
+export async function renderHome() {
   const userData = await fetchUserData()
   const auditData = await fetchAuditData()
   const transactionData = await fetchTransactionData()

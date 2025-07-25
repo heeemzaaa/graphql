@@ -1,10 +1,13 @@
-async function fetchAuditData() {
+import { AUDIT } from "../utils/variables.js";
+import { fetchData } from "../utils/utils.js"
+
+export async function fetchAuditData() {
   const token = localStorage.getItem('jwt');
   return await fetchData(AUDIT, {}, token);
 }
 
 
-function calculateAuditStats(auditData) {
+export function calculateAuditStats(auditData) {
   const succeeded = auditData.data?.user[0].audits_aggregate?.aggregate?.count || 0;
   const failed = auditData.data?.user[0].failed_audits?.aggregate?.count || 0;
   const total = succeeded + failed;
@@ -16,7 +19,7 @@ function calculateAuditStats(auditData) {
 }
 
 
-function createChartsHTML(auditStats) {
+export function createChartsHTML(auditStats) {
   return `
     <section class="charts">
       <div class="first_chart"></div>

@@ -1,10 +1,13 @@
+import { USER } from "../utils/variables.js"
+import { fetchData } from "../utils/utils.js"
+
 // Fetch and Render Dashboard Data with SVG Charts
-async function fetchUserData() {
+export async function fetchUserData() {
   const token = localStorage.getItem('jwt')
   return await fetchData(USER, {}, token)
 }
 
-function createUserInfoHTML(userData) {
+export function createUserInfoHTML(userData) {
   return `
     <section class="user_infos">
       <h1>Welcome ${userData.data.user[0].firstName} ${userData.data.user[0].lastName}</h1>

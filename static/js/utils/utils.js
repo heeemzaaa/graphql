@@ -1,4 +1,7 @@
-async function fetchData(query, variables = null, token) {
+import { url_data } from "./variables.js"
+import { checkAccess } from "../main.js"
+
+export async function fetchData(query, variables = null, token) {
     if (!token) {
         console.error('❌ No token provided to fetchData!')
         return
@@ -19,7 +22,7 @@ async function fetchData(query, variables = null, token) {
     return res.json()
 }
 
-function setupEventListeners() {
+export function setupEventListeners() {
   const logoutButton = document.getElementById('logout');
   logoutButton.addEventListener('click', () => {
     localStorage.removeItem('jwt');

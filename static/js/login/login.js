@@ -1,6 +1,9 @@
+import { auth } from "../utils/variables.js"
+import { renderHome } from "../home/home.js"
+import { showError } from "../utils/error.js"
 
 
- function renderLogin() {
+export function renderLogin() {
     document.body.innerHTML = ''
 
     // hna ncreeyew login section
@@ -78,6 +81,7 @@
         }
 
         try {
+            console.log('auth', auth)
             let res = await fetch(auth, options)
             if (!res.ok) {
                 console.error("Failed to login !")

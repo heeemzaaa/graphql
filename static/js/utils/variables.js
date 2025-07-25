@@ -1,8 +1,8 @@
-const url_data = `https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql`
-const auth = `https://learn.zone01oujda.ma/api/auth/signin`
+export const url_data = `https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql`
+export const auth = `https://learn.zone01oujda.ma/api/auth/signin`
 
 
-const USER = `
+export const USER = `
 query {
     user {
         login
@@ -14,7 +14,7 @@ query {
 }
 `
 
-const AUDIT = `
+export const AUDIT = `
 query {
   user {
     auditRatio
@@ -32,7 +32,7 @@ query {
 }
 `
 
-const TRANSACTIONS = `
+export const TRANSACTIONS = `
 query {
   transaction(
     where: {
@@ -50,7 +50,7 @@ query {
 } 
 `
 
-const SKILLS = `
+export const SKILLS = `
 query getSkillTransactions($login: String!) {
   user(where: {login: {_eq: $login}}) {
     transactions(

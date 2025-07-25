@@ -1,9 +1,12 @@
-async function fetchTransactionData() {
+import { TRANSACTIONS } from "../utils/variables.js";
+import { fetchData } from "../utils/utils.js"
+
+export async function fetchTransactionData() {
     const token = localStorage.getItem('jwt');
     return await fetchData(TRANSACTIONS, {}, token);
 }
 
-function createInfoSectionHTML() {
+export function createInfoSectionHTML() {
     return `
     <section class="infos">
       <h2 class="transaction-title">Transactions Overview</h2>
@@ -15,7 +18,7 @@ function createInfoSectionHTML() {
   `;
 }
 
-function createLinearSVG(transactionData) {
+export function createLinearSVG(transactionData) {
     const amounts = transactionData.map(d => d.amount);
     const totalXP = amounts.reduce((a, b) => a + b, 0);
 

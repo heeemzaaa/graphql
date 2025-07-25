@@ -1,44 +1,47 @@
-async function fetchSkillsData(arg) {
+import { SKILLS } from "../utils/variables.js";
+import { fetchData } from "../utils/utils.js"
+
+export async function fetchSkillsData(arg) {
     const token = localStorage.getItem('jwt');
     return await fetchData(SKILLS, { login: arg }, token);
 }
 
 
-function createSkillsBarChart(skillsData) {
-    const chartWidth = 1500;
-    const chartHeight = 500;
-    const padding = 60;
-    const barGap = 20;
+export function createSkillsBarChart(skillsData) {
+    const chartWidth = 1500
+    const chartHeight = 500
+    const padding = 60
+    const barGap = 20
 
     // Group skill amounts by type
-    const skillMap = {};
+    const skillMap = {}
     skillsData.forEach(item => {
-        if (!item.type || typeof item.amount !== 'number') return;
-        const label = item.type.replace('skill_', '').replace(/-/g, ' ');
-        skillMap[label] = (skillMap[label] || 0) + item.amount;
-    });
+        if (!item.type || typeof item.amount !== 'number') return
+        const label = item.type.replace('skill_', '').replace(/-/g, ' ')
+        skillMap[label] = (skillMap[label] || 0) + item.amount
+    })
 
-    const data = Object.entries(skillMap).map(([label, amount]) => ({ label, amount }));
-    if (data.length === 0) return `<p>No skill data available.</p>`;
+    const data = Object.entries(skillMap).map(([label, amount]) => ({ label, amount }))
+    if (data.length === 0) return `<p>No skill data available.</p>`
 
-    const maxAmount = Math.max(...data.map(d => d.amount));
-    const barWidth = (chartWidth - padding * 2) / data.length - barGap;
+    const maxAmount = Math.max(...data.map(d => d.amount))
+    const barWidth = (chartWidth - padding * 2) / data.length - barGap
 
-    const scaleY = (value) => (value / maxAmount) * (chartHeight - padding * 1.5);
+    const scaleY = (value) => (value / maxAmount) * (chartHeight - padding * 1.5)
 
-    let bars = '';
-    let labels = '';
-    let yTicks = '';
+    let bars = ''
+    let labels = ''
+    let yTicks = ''
 
     data.forEach((item, index) => {
-        const barHeight = scaleY(item.amount);
-        const x = padding + index * (barWidth + barGap);
-        const y = chartHeight - padding - barHeight;
+        const barHeight = scaleY(item.amount)
+        const x = padding + index * (barWidth + barGap)
+        const y = chartHeight - padding - barHeight
 
         // Bar rectangle
         bars += `
       <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="#4caf50"></rect>
-    `;
+    `
 
         // Label below X axis
         labels += `
