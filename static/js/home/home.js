@@ -1,6 +1,6 @@
 import { fetchUserData, createUserInfoHTML } from "../data/userdata.js"
 import { fetchAuditData, calculateAuditStats, createChartsHTML } from "../data/auditData.js"
-import { fetchTransactionData, createInfoSectionHTML, createLinearSVG } from "../data/transactionData.js"
+import { fetchTransactionData, createLinearSVG } from "../data/transactionData.js"
 import { fetchSkillsData, createSkillsBarChart } from "../data/skillsData.js"
 import { setupEventListeners } from "../utils/utils.js"
 
@@ -27,7 +27,6 @@ export async function renderHome() {
   const navigationHTML = createNavigationHTML()
   const userInfoHTML = createUserInfoHTML(userData)
   const chartsHTML = createChartsHTML(auditStats)
-  const infoSectionHTML = createInfoSectionHTML()
   const linearSVG =  createLinearSVG(transactionData.data.transaction)
   const skillSVG =  createSkillsBarChart(skills.data.user[0].transactions)
 
@@ -36,7 +35,6 @@ export async function renderHome() {
     <main id="home_page">
       ${userInfoHTML}
       ${chartsHTML}
-      ${infoSectionHTML}
       ${linearSVG}
       ${skillSVG}
     </main>

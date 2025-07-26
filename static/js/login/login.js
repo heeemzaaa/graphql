@@ -81,7 +81,6 @@ export function renderLogin() {
         }
 
         try {
-            console.log('auth', auth)
             let res = await fetch(auth, options)
             if (!res.ok) {
                 console.error("Failed to login !")

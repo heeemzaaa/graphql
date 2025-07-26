@@ -1,74 +1,163 @@
 * {
     margin: 0;
     padding: 0;
-    /* min-height: 100vh; */
+    box-sizing: border-box;
 }
 
 html,
 body {
     width: 100%;
-    background-color: rgb(255, 255, 255);
-    color: white;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #1e293b;
 }
 
-#home_page {
+/* Login Page */
+#login_page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+#login_page form {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    gap: 20px;
+    gap: 1rem;
 }
 
+#login_page input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+#login_page button {
+    padding: 0.6rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#login_page button:hover {
+    background-color: #1e40af;
+}
+
+/* Navbar */
 .navBar {
     display: flex;
-    background-color: rgb(43, 3, 3);
+    flex-direction: row;
+    background-color: #2563eb;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    padding-right: 3rem;
-    padding-left: 3rem;
+    padding: 1rem 2rem;
+    color: #fff;
+    flex-wrap: wrap;
+}
+
+.navBar h1 {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+p {
+    font-weight: bold;
+}
+
+span {
+    font-size: medium;
+    font-weight: lighter;
 }
 
 #logout {
-    background-color: rgb(226, 14, 14);
-    border-radius: 10px;
-    color: white;
-    padding: 10px;
+    background-color: #dc2626;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.hidden {
-    display: none;
+#logout:hover {
+    background-color: #991b1b;
+}
+
+/* Home Page */
+#home_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.user_infos,
+.chart-border {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 4px 12px #06b6d4;
+    padding: 1.25rem;
 }
 
 .user_infos {
     display: flex;
     flex-direction: column;
-    background-color: brown;
-    border-radius: 10px;
-    border: 2px solid red;
-    padding: 10px;
-    gap: 10px;
+    gap: 1rem;
 }
 
-.chart-border {
-    border-radius: 10px;
-    border: 2px solid red;
-    padding: 10px;
+.audit-card {
+    width: 140px;
+    height: 140px;
+    background-color: #06b6d4;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.audit-number {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #1e293b;
+}
 
+.audit-label {
+    color: #1e293b;
+    font-size: 14px;
+}
 
 .audits-section {
     margin: 8px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #e0f7fa;
     border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    color: #0f172a;
 }
 
 .audits-title {
     text-align: center;
     font-size: 26px;
-    color: #cc2222;
+    color: #0f172a;
     margin-bottom: 30px;
 }
 
@@ -79,65 +168,83 @@ body {
     justify-items: center;
 }
 
-.audit-card {
-    width: 140px;
-    height: 140px;
-    background-color: #f7ca68;
-    border-radius: 50%;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.audit-number {
-    font-size: 24px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
-    color: #b85c00;
-}
-
-.audit-label {
-    color: #8a6d3b;
-    font-size: 14px;
-}
-
-.transaction-chart-wrapper {
-    overflow-x: auto;
-    width: 100%;
-}
-
-.transaction-chart {
-    border: 2px solid red;
-}
-
 .transaction_chart {
     width: 100%;
+    padding: 20px;
     height: auto;
-    background-color: #fff;
- 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #0ea5e9;
+    background-color: #ffffff;
 }
 
 .names {
     font-size: 10px;
+    fill: #1e293b;
     text-anchor: start;
-    fill: black;
     pointer-events: none;
     user-select: none;
-    z-index: 100;
 }
 
-.transaction-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
+/* Utility */
+.hidden {
+    display: none;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    #login_page form {
+        padding: 1.5rem;
+    }
+
+    .audits-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .audit-card {
+        width: 120px;
+        height: 120px;
+    }
+
+    .transaction_chart {
+        font-size: 0.85rem;
+    }
+}
+
 
 .skillsSvg {
-    border: 2px solid red;
     width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #0ea5e9;
+    padding: 1rem;
+    display: block;
+}
+
+.skills-chart {
+    margin-top: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 8px #0ea5e9;
+}
+
+/* Optional: make labels wrap or rotate slightly for small widths */
+@media (max-width: 768px) {
+    .skillsSvg text {
+        font-size: 9px;
+    }
+
+    .skills-chart {
+        padding: 0.75rem;
+    }
 }
