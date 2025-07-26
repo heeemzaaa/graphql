@@ -37,12 +37,12 @@ export function createLinearSVG(transactionData) {
   }
 
   const circles = points.map(p =>
-    `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#2563eb" />`
+    `<circle cx="${p.x}" cy="${p.y}" r="4" fill="#06b6d4" />`
   ).join("");
   
   const lines = points.map((p, i, arr) => {
     if (i === 0) return "";
-    return `<line x1="${arr[i - 1].x}" y1="${arr[i - 1].y}" x2="${p.x}" y2="${p.y}" stroke="#2563eb" stroke-width="2"/>`;
+    return `<line x1="${arr[i - 1].x}" y1="${arr[i - 1].y}" x2="${p.x}" y2="${p.y}" stroke="#06b6d4" stroke-width="2"/>`;
   }).join("");
 
 

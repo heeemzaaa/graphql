@@ -47,7 +47,7 @@ export function createSkillsBarChart(skillsData) {
     const y = chartHeight - padding - barHeight;
 
     bars += `
-      <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="#0ea5e9" />
+      <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="#06b6d4" />
     `;
 
     labels += `
