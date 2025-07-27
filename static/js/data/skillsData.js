@@ -8,30 +8,30 @@ export async function fetchSkillsData(arg) {
 
 
 export function createSkillsBarChart(skillsData) {
+  console.log('skillsData', skillsData)
   const chartWidth = 1500;
   const chartHeight = 500;
   const padding = 60;
   const barGap = 20;
 
-  // 1. Group by skill type and get only the HIGHEST amount once
+  // 1. Group by skill type and keep the highest amount
   const skillMap = {};
   skillsData.forEach(item => {
     if (!item.type || typeof item.amount !== 'number') return;
     const label = item.type.replace('skill_', '').replace(/-/g, ' ');
     if (!skillMap[label] || skillMap[label] < item.amount) {
-      skillMap[label] = item.amount; // keep only highest
+      skillMap[label] = item.amount;
     }
   });
 
   // 2. Convert skillMap to array
   const data = Object.entries(skillMap).map(([label, amount]) => ({ label, amount }));
-
   if (data.length === 0) return `<p>No skill data available.</p>`;
 
-  // 3. Determine the highest amount to scale everything to
-  const maxAmount = Math.max(...data.map(d => d.amount));
+  // 3. Force Y-axis to go from 0% to 100%
+  const maxAmount = 100;
 
-  // 4. Define scaling function
+  // 4. Scaling function
   const drawableHeight = chartHeight - padding * 1.5;
   const scaleY = (value) => (value / maxAmount) * drawableHeight;
   const barWidth = (chartWidth - padding * 2) / data.length - barGap;
@@ -40,7 +40,7 @@ export function createSkillsBarChart(skillsData) {
   let labels = '';
   let yTicks = '';
 
-  // 5. Create bars and x-axis labels
+  // 5. Bars + labels
   data.forEach((item, index) => {
     const barHeight = scaleY(item.amount);
     const x = padding + index * (barWidth + barGap);
@@ -57,33 +57,28 @@ export function createSkillsBarChart(skillsData) {
     `;
   });
 
-  // 6. Calculate Y-axis tick step (smart rounding)
-  const rawStep = maxAmount / 5;
-  const step = Math.ceil(rawStep / 5) * 5;
-
-  for (let val = 0; val <= maxAmount; val += step) {
-    const y = chartHeight - padding - scaleY(val);
+  // 6. Y-axis labels and lines (0% to 100%)
+  const yStep = 10;
+  for (let percent = 0; percent <= 100; percent += yStep) {
+    const y = chartHeight - padding - scaleY(percent);
     yTicks += `
-      <line x1="${padding - 5}" y1="${y}" x2="${padding}" y2="${y}" stroke="black" />
-      <text x="${padding - 10}" y="${y + 4}" font-size="10" text-anchor="end" fill="black">${val}</text>
+      <line x1="${padding}" y1="${y}" x2="${chartWidth - padding}" y2="${y}" stroke="#ccc" stroke-dasharray="2" />
+      <text x="${padding - 10}" y="${y + 4}" font-size="10" text-anchor="end" fill="black">${percent}%</text>
     `;
   }
 
   // 7. Axis lines
   const axisLines = `
-    <!-- Y Axis -->
     <line x1="${padding}" y1="${padding / 2}" x2="${padding}" y2="${chartHeight - padding}" stroke="#000" />
-
-    <!-- X Axis -->
     <line x1="${padding}" y1="${chartHeight - padding}" x2="${chartWidth - padding}" y2="${chartHeight - padding}" stroke="#000" />
   `;
 
-  // 8. Final chart HTML
+  // 8. Return full SVG
   return `
     <h2 class="skills-title">Skills Overview</h2>
-    <svg 
-      class="skillsSvg" 
-      viewBox="0 0 ${chartWidth} ${chartHeight}" 
+    <svg
+      class="skillsSvg"
+      viewBox="0 0 ${chartWidth} ${chartHeight}"
       preserveAspectRatio="xMidYMid meet"
     >
       ${axisLines}
@@ -93,3 +88,4 @@ export function createSkillsBarChart(skillsData) {
     </svg>
   `;
 }
+

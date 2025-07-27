@@ -26,8 +26,8 @@ export function createLinearSVG(transactionData) {
     return { x, y, label: d.object.name, total: cumulativeXP };
   })
 
-  // ✅ Clean Y-axis: step every 1000 XP
-  const yStep = 100000;
+  // ✅ Clean Y-axis: step every 10% of student's XP
+  const yStep = roundedMaxXP/10
   const yLabels = [];
   const yLines = [];
   for (let xp = 0; xp <= roundedMaxXP; xp += yStep) {
