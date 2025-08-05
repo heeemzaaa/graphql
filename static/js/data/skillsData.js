@@ -1,77 +1,70 @@
-import { SKILLS } from "../utils/variables.js";
+import { SKILLS } from "../utils/variables.js"
 import { fetchData } from "../utils/utils.js"
 
 export async function fetchSkillsData(arg) {
-  const token = localStorage.getItem('jwt');
-  return await fetchData(SKILLS, { login: arg }, token);
+  const token = localStorage.getItem('jwt')
+  return await fetchData(SKILLS, { login: arg }, token)
 }
 
 
 export function createSkillsBarChart(skillsData) {
-  console.log('skillsData', skillsData)
-  const chartWidth = 1500;
-  const chartHeight = 500;
-  const padding = 60;
-  const barGap = 20;
+  const chartWidth = 1500
+  const chartHeight = 500
+  const padding = 60
+  const barGap = 20
 
-  // 1. Group by skill type and keep the highest amount
-  const skillMap = {};
+
+  const skillMap = {}
   skillsData.forEach(item => {
-    if (!item.type || typeof item.amount !== 'number') return;
-    const label = item.type.replace('skill_', '').replace(/-/g, ' ');
+    if (!item.type || typeof item.amount !== 'number') return
+    const label = item.type.replace('skill_', '').replace(/-/g, ' ')
     if (!skillMap[label] || skillMap[label] < item.amount) {
-      skillMap[label] = item.amount;
+      skillMap[label] = item.amount
     }
-  });
+  })
 
-  // 2. Convert skillMap to array
-  const data = Object.entries(skillMap).map(([label, amount]) => ({ label, amount }));
-  if (data.length === 0) return `<p>No skill data available.</p>`;
+  const data = Object.entries(skillMap).map(([label, amount]) => ({ label, amount }))
+  if (data.length === 0) return `<p>No skill data available.</p>`
 
-  // 3. Force Y-axis to go from 0% to 100%
-  const maxAmount = 100;
+  const maxAmount = 100
 
-  // 4. Scaling function
-  const drawableHeight = chartHeight - padding * 1.5;
-  const scaleY = (value) => (value / maxAmount) * drawableHeight;
-  const barWidth = (chartWidth - padding * 2) / data.length - barGap;
+  const drawableHeight = chartHeight - padding * 1.5
+  const scaleY = (value) => (value / maxAmount) * drawableHeight
+  const barWidth = (chartWidth - padding * 2) / data.length - barGap
 
-  let bars = '';
-  let labels = '';
-  let yTicks = '';
+  let bars = ''
+  let labels = ''
+  let yTicks = ''
 
-  // 5. Bars + labels
   data.forEach((item, index) => {
-    const barHeight = scaleY(item.amount);
-    const x = padding + index * (barWidth + barGap);
-    const y = chartHeight - padding - barHeight;
+    const barHeight = scaleY(item.amount)
+    const x = padding + index * (barWidth + barGap)
+    const y = chartHeight - padding - barHeight
 
     bars += `
       <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="#06b6d4" />
-    `;
+    `
 
     labels += `
-      <text x="${x + barWidth / 2}" y="${chartHeight - padding + 20}" font-size="11" text-anchor="middle" fill="black">
+      <text x="${x + barWidth / 2}" y="${chartHeight - padding + 20}" font-size="10" text-anchor="middle" fill="black">
         ${item.label}
       </text>
-    `;
-  });
+    `
+  })
 
-  // 6. Y-axis labels and lines (0% to 100%)
-  const yStep = 10;
+  const yStep = 10
   for (let percent = 0; percent <= 100; percent += yStep) {
-    const y = chartHeight - padding - scaleY(percent);
+    const y = chartHeight - padding - scaleY(percent)
     yTicks += `
       <line x1="${padding}" y1="${y}" x2="${chartWidth - padding}" y2="${y}" stroke="#ccc" stroke-dasharray="2" />
       <text x="${padding - 10}" y="${y + 4}" font-size="10" text-anchor="end" fill="black">${percent}%</text>
-    `;
+    `
   }
 
-  // 7. Axis lines
   const axisLines = `
     <line x1="${padding}" y1="${padding / 2}" x2="${padding}" y2="${chartHeight - padding}" stroke="#000" />
     <line x1="${padding}" y1="${chartHeight - padding}" x2="${chartWidth - padding}" y2="${chartHeight - padding}" stroke="#000" />
-  `;
+  `
 
   // 8. Return full SVG
   return `
@@ -86,6 +79,6 @@ export function createSkillsBarChart(skillsData) {
       ${bars}
       ${labels}
     </svg>
-  `;
+  `
 }
 

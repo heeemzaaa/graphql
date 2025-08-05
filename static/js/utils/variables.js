@@ -42,7 +42,6 @@ query {
     order_by: {createdAt: asc}
   ) {
     amount
-    createdAt
     object {
       name
     }

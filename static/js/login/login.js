@@ -47,7 +47,7 @@ export function renderLogin() {
     errorP.id = 'errorLogin'
     errorP.classList.add('hidden')
 
-    // Append all to form
+    // Append kolchi to form
     form.appendChild(p1)
     form.appendChild(inputData)
     form.appendChild(p2)
