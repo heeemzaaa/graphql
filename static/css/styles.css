@@ -64,7 +64,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    /* flex-wrap: wrap; */
 }
 
 .navBar h1 {
@@ -152,6 +151,7 @@ span {
     border-radius: 20px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     color: #0f172a;
+    
 }
 
 .audits-title {
@@ -161,11 +161,14 @@ span {
     margin-bottom: 30px;
 }
 
-.audits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 30px;
+.audits {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    gap: 10%;
     justify-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .transaction_chart {

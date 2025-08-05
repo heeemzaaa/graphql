@@ -23,7 +23,7 @@ export function createChartsHTML(auditStats) {
   <div class="first_chart"></div>
   <div class="chart-border">
   <h2 class="audits-title">Your Audit Statistics</h2>
-        <div class="audits-grid">
+        <div class="audits">
           <div class="audit-card">
             <span class="audit-number">${auditStats.auditRatio}</span>
             <span class="audit-label">Audit Ratio</span>
