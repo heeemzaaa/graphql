@@ -1,3 +1,4 @@
+// show error in case of false data
 export function showError(element, errorLogin) {
     element.textContent = errorLogin
     element.style.color = "red"

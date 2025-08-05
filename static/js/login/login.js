@@ -2,7 +2,7 @@ import { auth } from "../utils/variables.js"
 import { renderHome } from "../home/home.js"
 import { showError } from "../utils/error.js"
 
-
+// handle the login page from scratch to the direction to home
 export function renderLogin() {
     document.body.innerHTML = ''
 

@@ -1,11 +1,13 @@
 import { AUDIT } from "../utils/variables.js"
 import { fetchData } from "../utils/utils.js"
 
+// fetch the audit data
 export async function fetchAuditData() {
   const token = localStorage.getItem('jwt')
   return await fetchData(AUDIT, {}, token)
 }
 
+// calculate the audit data , to show some state hh
 export function calculateAuditStats(auditData) {
   const succeeded = auditData.data?.user[0].audits_aggregate?.aggregate?.count || 0
   const failed = auditData.data?.user[0].failed_audits?.aggregate?.count || 0
@@ -17,7 +19,7 @@ export function calculateAuditStats(auditData) {
   return { succeeded, failed, total, succeededPercentage, failedPercentage, auditRatio }
 }
 
-
+// create the audit data section
 export function createChartsHTML(auditStats) {
   return `
   <section class="charts">

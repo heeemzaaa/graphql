@@ -1,12 +1,13 @@
 import { SKILLS } from "../utils/variables.js"
 import { fetchData } from "../utils/utils.js"
 
+// fetch the skills data
 export async function fetchSkillsData(arg) {
   const token = localStorage.getItem('jwt')
   return await fetchData(SKILLS, { login: arg }, token)
 }
 
-
+// create the skills data section
 export function createSkillsBarChart(skillsData) {
   const chartWidth = 1500
   const chartHeight = 500

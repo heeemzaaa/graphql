@@ -2,6 +2,7 @@ import { url_data } from "./variables.js"
 import { checkAccess } from "../main.js"
 import { renderLogin } from "../login/login.js"
 
+// global function to fetch the data 
 export async function fetchData(query, variables = null, token) {
     if (!token) {
         console.error('No token provided to fetchData!')
@@ -31,7 +32,7 @@ export async function fetchData(query, variables = null, token) {
     return data
 }
 
-
+// case of invalid jwt redirecting to loging page 
 export function invalidJWT(data) {
     let error = data.errors? data.errors[0] : null
     if (error) {
@@ -40,6 +41,7 @@ export function invalidJWT(data) {
     return false
 }
 
+// logout handler , if click go to login page
 export function setupEventListeners() {
   const logoutButton = document.getElementById('logout')
   logoutButton.addEventListener('click', () => {

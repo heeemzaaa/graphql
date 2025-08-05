@@ -5,7 +5,7 @@ import { fetchSkillsData, createSkillsBarChart } from "../data/skillsData.js"
 import { setupEventListeners } from "../utils/utils.js"
 
 
-
+// create the nav bar of the home page
 function createNavigationHTML() {
   return `
     <nav class="navBar">

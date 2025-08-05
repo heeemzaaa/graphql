@@ -7,6 +7,7 @@ export async function fetchUserData() {
   return await fetchData(USER, {}, token)
 }
 
+// create the user info data
 export function createUserInfoHTML(userData) {
   return `
     <section class="user_infos">

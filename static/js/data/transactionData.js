@@ -1,11 +1,13 @@
 import { TRANSACTIONS } from "../utils/variables.js"
 import { fetchData } from "../utils/utils.js"
 
+// fetch the transaction data
 export async function fetchTransactionData() {
   const token = localStorage.getItem('jwt')
   return await fetchData(TRANSACTIONS, {}, token)
 }
 
+// create the transaction section
 export function createLinearSVG(transactionData) {
   const amounts = transactionData.map(d => d.amount)
   const totalXP = amounts.reduce((a, b) => a + b, 0)
