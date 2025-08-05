@@ -165,10 +165,9 @@ span {
     display: flex;
     justify-content: center;
     margin: auto;
-    gap: 10%;
     justify-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 5rem;
 }
 
 .transaction_chart {
